@@ -133,6 +133,12 @@ describe('launcher', () => {
             launcher.endHandler({ cid: '0-5', exitCode: 1, retries: 1, specs: ['a.js'] })
             expect(launcher.schedule).toMatchObject([{ cid: 0, specs: [{ rid: '0-5', files: ['a.js'], retries: 0 }] }])
         })
+
+        it('should requeue retried specfiles correctly', () => {
+            launcher.schedule = [{ cid: 0, specs: [] }]
+            launcher.endHandler({ cid: '0-5', exitCode: 1, retries: 1, specs: ['a.js'] })
+            expect(launcher.schedule).toMatchObject([{ cid: 0, specs: [{ rid: '0-5', files: ['a.js'], retries: 0 }] }])
+        })
     })
 
     describe('exitHandler', () => {

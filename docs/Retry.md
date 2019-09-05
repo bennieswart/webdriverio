@@ -88,5 +88,9 @@ module.exports = function () {
      * The number of times to retry the entire specfile when it fails as a whole
      */
     specFileRetries: 1
+    /**
+     * Retried specfiles are inserted at the beginning of the queue
+     */
+    requeue: 'first'
 }
 ```
